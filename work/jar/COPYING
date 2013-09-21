@@ -1,0 +1,5 @@
+The jar file in this directory contains contents under several licenses. This
+file itself is NOT included in the Git repository because it is probably not
+legal to distribute it. vcat-toollabs.jar can be built using the vcat-toollabs
+Eclipse project/Maven artifact. This is available in a GitHub repository at
+https://github.com/dapete42/vcat

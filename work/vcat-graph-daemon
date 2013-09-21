@@ -1,0 +1,3 @@
+#!/bin/sh
+
+java -Xms512m -Xmx512m -jar $HOME/work/jar/vcat-toollabs.jar $HOME/work/vcat.properties
