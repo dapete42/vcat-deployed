@@ -1,0 +1,3 @@
+RewriteEngine On
+# Define 'render' as alias for the vcat.pl CGI script
+RewriteRule ^render$ /vcat/cgi-bin/vcat.pl
