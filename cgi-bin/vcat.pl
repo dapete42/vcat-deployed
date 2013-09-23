@@ -9,7 +9,7 @@ use Redis;
 
 my $CONFIG = '/data/project/vcat/work/vcat.properties';
 
-my $q = CGI->new;
+our $q = CGI->new;
 
 if (!-e $CONFIG) {
 	error('config file not found');
@@ -46,7 +46,10 @@ my $redis_server_hostname = $config{'redis.server.hostname'};
 my $redis_server_port = $config{'redis.server.port'};
 $redis_server_port = 6379 unless $redis_server_port;
 
-my $r = Redis->new(server => "$redis_server_hostname:$redis_server_port");
+my $r;
+eval { $r = Redis->new(server => "$redis_server_hostname:$redis_server_port", reconnect => 10) };
+error($@) if $@;
+
 #my $key = $r->randomkey;
 
 my $redis_secret = $config{'redis.secret'};
@@ -59,8 +62,13 @@ my $redis_key_response = $redis_secret . '-' . $key . $config{'redis.key.respons
 my $redis_key_response_error = $redis_secret . '-' . $key . $config{'redis.key.response.error.suffix'};
 my $redis_key_response_headers = $redis_secret . '-' . $key . $config{'redis.key.response.headers.suffix'};
 
-$r->set($redis_key_request => encode_json(\%json));
-$r->publish($redis_channel_request, $key);
+our $json_encoded = encode_json(\%json);
+$r->set($redis_key_request => $json_encoded);;
+my $listeners = $r->publish($redis_channel_request, $key);
+
+if ($listeners == 0) {
+	error("Control deamon not listening for requests on Redis");
+}
 
 our $keep_going = 1;
 my $r2 = Redis->new(server => "$redis_server_hostname:$redis_server_port");
@@ -68,16 +76,18 @@ $r2->subscribe(
 	$redis_channel_response,
 	sub {
 		my ($message, $channel, $subscribed_channel) = @_;
-		$key;
-		if ($message eq our $key) {
+		if ($message eq $key) {
 			$keep_going = 0;
 		}
 	}
 );
 
-while ($keep_going) {
-	$r2->wait_for_messages(0.1) while $keep_going;
+my $wait = 60;
+while ($keep_going && $wait > 0) {
+	$r2->wait_for_messages(0.5) while $keep_going;
+	$wait--;
 }
+
 $r2->unsubscribe($redis_channel_response, sub {});
 
 if ($r->exists($redis_key_response_error)) {
@@ -105,7 +115,10 @@ $r->del($redis_key_response);
 $r->del($redis_key_response_error);
 
 sub error {
-	print "Content-type: text/plain\n\nError: ";
-	print shift;
+	my $message = shift;
+	print $q->header('Content-type' => 'text/plain');
+	print "Error: $message";
+	print STDERR "Request: $json_encoded\n";
+	print STDERR "$message\n";
 	exit;
 }
