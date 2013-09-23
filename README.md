@@ -11,8 +11,9 @@ The configuration file `work/vcat.properties` is not complete in the repository,
 because it contains information that can not be made public, namely:
 
 * `jdbc.user` and `jdbc.password`, the login information for MariaDB database
-  access. On Tool Labs, this can be found in ~/replica.my.cnf for each project.
-* `redis.secret?`, the secret prefix used with Redis keys etc. It can be
+  access. On Tool Labs, this can be found in `~/replica.my.cnf` for each
+  project.
+* `redis.secret`, the secret prefix used with Redis keys etc. It can be
   randomly chosen, e.g. with `openssl rand -base64 32`.
 
 JAR for vcat-toollabs
