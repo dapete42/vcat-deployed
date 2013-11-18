@@ -12,13 +12,11 @@ purge=600
 purge.metadata=86400
 
 # JDBC URL for MySQL/MariaDB access to wiki table
-jdbc.url=jdbc:mysql://localhost:3306/toollabs
+jdbc.url=jdbc:mysql://s1.labsdb:3306/meta_p
 # Username and password are read from replica.my.cnf in user's home directory
-jdbc.user=toollabs
-jdbc.password=toollabs
 
 # Redis server information
-redis.server.hostname=localhost
+redis.server.hostname=tools-redis
 #redis.server.port=6379
 
 # Redis secret used for prefix
