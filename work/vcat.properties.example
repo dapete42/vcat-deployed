@@ -11,8 +11,9 @@ purge=600
 # Purge metadata after (seconds)
 purge.metadata=86400
 
-# JDBC URL and login information for MySQL/MariaDB access to wiki table
+# JDBC URL for MySQL/MariaDB access to wiki table
 jdbc.url=jdbc:mysql://localhost:3306/toollabs
+# Username and password are read from replica.my.cnf in user's home directory
 jdbc.user=toollabs
 jdbc.password=toollabs
 
