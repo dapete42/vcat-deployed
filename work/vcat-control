@@ -1,0 +1,54 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use CGI;
+use JSON;
+use Redis;
+
+my $CONFIG = '/data/project/vcat/work/vcat.properties';
+
+if (!-e $CONFIG) {
+	error('config file not found');
+}
+
+my %config;
+open CONFIG, '<', $CONFIG;
+while (my $line = <CONFIG>) {
+	chomp $line;
+	if (my ($key, $value) = ($line =~ /^\s*([^#].*?)\s*=\s*(.*)$/)) {
+		$key = $key;
+		$value = $value;
+		$config{$key} = $value;
+	}
+}
+close CONFIG;
+
+my $redis_server_hostname = $config{'redis.server.hostname'};
+my $redis_server_port = $config{'redis.server.port'};
+$redis_server_port = 6379 unless $redis_server_port;
+
+my $r;
+eval { $r = Redis->new(server => "$redis_server_hostname:$redis_server_port", reconnect => 10) };
+error($@) if $@;
+
+#my $key = $r->randomkey;
+
+my $redis_secret = $config{'redis.secret'};
+
+my $redis_channel_control = $redis_secret . $config{'redis.channel.control.suffix'};
+
+while (my $line = <STDIN>) {
+	chomp $line;
+	my $listeners = $r->publish($redis_channel_control, $line);
+	if ($listeners == 0) {
+		error("Control deamon not listening on Redis");
+	}
+}
+
+sub error {
+	my $message = shift;
+	print STDERR "$message\n";
+	exit;
+}
