@@ -3,7 +3,8 @@
 use strict;
 use warnings;
 
-use CGI;
+use CGI qw(-utf8);
+use Encode;
 use JSON;
 use Redis;
 
@@ -32,7 +33,7 @@ my @names = keys %vars;
 my %json;
 for my $name (@names) {
 	my @values = split("\0",$vars{$name});
-	$json{$name} = \@values;
+	$json{decode utf8=>$name} = \@values;
 }
 
 my $now = `date +%Y%m%d%H%M%S`;
@@ -58,7 +59,7 @@ my $redis_key_response = $redis_secret . '-' . $key . $config{'redis.key.respons
 my $redis_key_response_error = $redis_secret . '-' . $key . $config{'redis.key.response.error.suffix'};
 my $redis_key_response_headers = $redis_secret . '-' . $key . $config{'redis.key.response.headers.suffix'};
 
-our $json_encoded = encode_json(\%json);
+our $json_encoded = to_json(\%json, {ascii=>1});
 $r->set($redis_key_request => $json_encoded);;
 my $listeners = $r->publish($redis_channel_request, $key);
 
