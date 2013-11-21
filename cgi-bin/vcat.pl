@@ -40,8 +40,6 @@ chomp $now;
 my $pid = $$;
 our $key = "$now-$pid"; 
 
-#our $key = 'test';
-
 my $redis_server_hostname = $config{'redis.server.hostname'};
 my $redis_server_port = $config{'redis.server.port'};
 $redis_server_port = 6379 unless $redis_server_port;
@@ -49,8 +47,6 @@ $redis_server_port = 6379 unless $redis_server_port;
 my $r;
 eval { $r = Redis->new(server => "$redis_server_hostname:$redis_server_port", reconnect => 10) };
 error($@) if $@;
-
-#my $key = $r->randomkey;
 
 my $redis_secret = $config{'redis.secret'};
 
