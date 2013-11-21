@@ -10,6 +10,6 @@ if [ -n "$JOB" ]; then
 	JOB=`job vcat-toollabs-daemon`
 	if [ -n "$JOB" ]; then
 		# If it is still running, ask SGE to stop the daemon
-		jstop vcat-toollabs-daemon >/dev/null 2>/dev/null
+		jstop vcat-toollabs-daemon >/dev/null 2>&1
 	fi
 fi
