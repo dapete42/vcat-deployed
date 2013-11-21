@@ -1,5 +1,0 @@
-#!/bin/sh
-
-echo STOP | ~/work/vcat-control
-sleep 2
-jstop vcat-toollabs-daemon

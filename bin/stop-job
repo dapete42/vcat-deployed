@@ -1,0 +1,15 @@
+#!/bin/bash
+
+JOB=`job vcat-toollabs-daemon`
+
+if [ -n "$JOB" ]; then
+	# Send STOP command
+	echo STOP | $HOME/bin/vcat-control
+	# Wait a bit
+	sleep 2
+	JOB=`job vcat-toollabs-daemon`
+	if [ -n "$JOB" ]; then
+		# If it is still running, ask SGE to stop the daemon
+		jstop vcat-toollabs-daemon >/dev/null 2>/dev/null
+	fi
+fi

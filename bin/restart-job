@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Stop the job
+$HOME/bin/stop-job
+
+# Wait until it is really gone
+JOB="x"
+until [ -z "$JOB" ]; do
+	JOB=`job vcat-toollabs-daemon`
+done
+
+# Start the job again
+$HOME/bin/start-job
