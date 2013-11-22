@@ -4,7 +4,7 @@ JOB=`job vcat-toollabs-daemon`
 
 if [ -n "$JOB" ]; then
 	# Send STOP command
-	echo STOP | $HOME/bin/vcat-control
+	$HOME/bin/vcat-control-stop
 	# Wait a bit
 	sleep 2
 	JOB=`job vcat-toollabs-daemon`

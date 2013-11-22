@@ -39,12 +39,9 @@ my $redis_secret = $config{'redis.secret'};
 
 my $redis_channel_control = $redis_secret . $config{'redis.channel.control.suffix'};
 
-while (my $line = <STDIN>) {
-	chomp $line;
-	my $listeners = $r->publish($redis_channel_control, $line);
-	if ($listeners == 0) {
-		error("Control deamon not listening on Redis");
-	}
+my $listeners = $r->publish($redis_channel_control, 'PING');
+if ($listeners == 0) {
+	exit 1;
 }
 
 sub error {
