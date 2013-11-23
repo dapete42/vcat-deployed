@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PID=`job vcat-toollabs-daemon`
+JOBID=`job vcat-toollabs-daemon`
 
-if [ -z "$PID" ]; then
+if [ -z "$JOBID" ]; then
 	jstart -quiet -stderr -mem 2g -o $HOME/vcat-toollabs-daemon.log -j y -N vcat-toollabs-daemon java -Xms128m -Xmx128m -jar $HOME/work/jar/vcat-toollabs.jar $HOME/work/vcat.properties
 fi

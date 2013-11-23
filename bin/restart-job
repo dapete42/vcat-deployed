@@ -4,8 +4,9 @@
 $HOME/bin/stop-job
 
 # Wait until it is really gone
-JOB="x"
+JOB=`job vcat-toollabs-daemon`
 until [ -z "$JOB" ]; do
+	sleep 0.5
 	JOB=`job vcat-toollabs-daemon`
 done
 
