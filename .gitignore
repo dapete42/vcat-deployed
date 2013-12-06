@@ -2,4 +2,4 @@
 *.log
 replica.my.cnf
 !.gitignore
-!.htaccess
+!.lighttpd.conf
