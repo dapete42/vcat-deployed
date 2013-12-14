@@ -30,10 +30,10 @@ close CONFIG;
 
 my %vars = $q->Vars;
 my @names = keys %vars;
-my %json;
+my %jsonParameters;
 for my $name (@names) {
 	my @values = split("\0",$vars{$name});
-	$json{decode utf8=>$name} = \@values;
+	$jsonParameters{decode utf8=>$name} = \@values;
 }
 
 my $now = `date +%Y%m%d%H%M%S`;
@@ -54,26 +54,27 @@ my $redis_secret = $config{'redis.secret'};
 my $redis_channel_request = $redis_secret . $config{'redis.channel.request.suffix'};
 my $redis_channel_response = $redis_secret . $config{'redis.channel.response.suffix'};
 
-my $redis_key_request = $redis_secret . '-' . $key . $config{'redis.key.request.suffix'};
-my $redis_key_response = $redis_secret . '-' . $key . $config{'redis.key.response.suffix'};
-my $redis_key_response_error = $redis_secret . '-' . $key . $config{'redis.key.response.error.suffix'};
-my $redis_key_response_headers = $redis_secret . '-' . $key . $config{'redis.key.response.headers.suffix'};
+my $jsonRequest = {
+	"key" => $key,
+	"parameters" => \%jsonParameters
+};
 
-our $json_encoded = to_json(\%json, {ascii=>1});
-$r->set($redis_key_request => $json_encoded);;
-my $listeners = $r->publish($redis_channel_request, $key);
+our $json_encoded = to_json($jsonRequest, {ascii=>1});
+my $listeners = $r->publish($redis_channel_request, $json_encoded);
 
 if ($listeners == 0) {
 	error("Control deamon not listening for requests on Redis");
 }
 
 our $keep_going = 1;
+my $jsonResponse;
 my $r2 = Redis->new(server => "$redis_server_hostname:$redis_server_port");
 $r2->subscribe(
 	$redis_channel_response,
 	sub {
 		my ($message, $channel, $subscribed_channel) = @_;
-		if ($message eq $key) {
+		$jsonResponse = decode_json($message);
+		if ($jsonResponse->{'key'} eq $key) {
 			$keep_going = 0;
 		}
 	}
@@ -87,15 +88,14 @@ while ($keep_going && $wait > 0) {
 
 $r2->unsubscribe($redis_channel_response, sub {});
 
-if ($r->exists($redis_key_response_error)) {
-	error ($r->get($redis_key_response_error));
+if (exists $jsonResponse->{'error'}) {
+	error ($jsonResponse->{'error'});
 } else {
-	my $headers_json = $r->get($redis_key_response_headers);
-	my $response_file = $r->get($redis_key_response);
+	my $headers = $jsonResponse->{'headers'};
+	my $response_file = $jsonResponse->{'filename'};
 	
 	binmode STDOUT;
 	
-	my $headers = decode_json($headers_json);
 	print $q->header($headers);
 	
 	open RESPONSEFILE, '<', $response_file;
@@ -106,10 +106,6 @@ if ($r->exists($redis_key_response_error)) {
 	}
 	close RESPONSEFILE;
 }
-
-$r->del($redis_key_request);
-$r->del($redis_key_response);
-$r->del($redis_key_response_error);
 
 sub error {
 	my $message = shift;
