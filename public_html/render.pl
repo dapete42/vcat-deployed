@@ -13,7 +13,7 @@ my $CONFIG = '/data/project/vcat/work/vcat.properties';
 our $q = CGI->new;
 
 if (!-e $CONFIG) {
-	error('config file not found');
+	errorWithLog("Configuration file '$CONFIG' not found");
 }
 
 my %config;
@@ -47,7 +47,7 @@ $redis_server_port = 6379 unless $redis_server_port;
 
 my $r;
 eval { $r = Redis->new(server => "$redis_server_hostname:$redis_server_port", reconnect => 10) };
-error($@) if $@;
+errorWithLog($@) if $@;
 
 my $redis_secret = $config{'redis.secret'};
 
@@ -63,7 +63,7 @@ our $json_encoded = to_json($jsonRequest, {ascii=>1});
 my $listeners = $r->publish($redis_channel_request, $json_encoded);
 
 if ($listeners == 0) {
-	error("Control deamon not listening for requests on Redis");
+	errorWithLog("Control deamon not listening for requests on Redis");
 }
 
 our $keep_going = 1;
@@ -111,7 +111,13 @@ sub error {
 	my $message = shift;
 	print $q->header('Content-type' => 'text/plain');
 	print "Error: $message";
-	print STDERR "Request: $json_encoded\n";
-	print STDERR "$message\n";
 	exit;
+}
+
+sub errorWithLog {
+	my $message = shift;
+	my $date = `date +'%Y-%m-%d %H:%M:%S'`;
+	chomp $date;
+	print STDERR "$date: (render.pl) $message\n";
+	error($message);
 }
