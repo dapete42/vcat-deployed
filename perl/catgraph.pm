@@ -1,8 +1,8 @@
-package graphviz;
+package catgraph;
 
 use strict;
 
-sub convertGraphvizParameters {
+sub convertCatgraphParameters {
 	my @templateInputParameters = @_;
 	
 	my %outputParameters;

@@ -14,9 +14,9 @@
 			<ul class="oneline">
 <TMPL_LOOP NAME=languages>
 	<TMPL_IF NAME=lang>
-				<li><a href="graphviz-convert?lang=<TMPL_VAR NAME=lang ESCAPE=html>"><TMPL_VAR NAME=name ESCAPE=html></a></li>
+				<li><a href="catgraph-convert?lang=<TMPL_VAR NAME=lang ESCAPE=html>"><TMPL_VAR NAME=name ESCAPE=html></a></li>
 	<TMPL_ELSE>
-				<li><a href="graphviz-convert"><TMPL_VAR NAME=name ESCAPE=html></a></li>
+				<li><a href="catgraph-convert"><TMPL_VAR NAME=name ESCAPE=html></a></li>
 	</TMPL_IF>
 </TMPL_LOOP>
 			</ul>
@@ -77,7 +77,7 @@
 					</tr>
 					<tr class="highlight">
 						<th scope=row><TMPL_VAR NAME=t_th_output_url ESCAPE=html></th>
-						<td><a href="<TMPL_VAR NAME=outputUrl ESCAPE=html>" target="graphviz-convert-output"><TMPL_VAR NAME=outputUrl ESCAPE=html></a></td>
+						<td><a href="<TMPL_VAR NAME=outputUrl ESCAPE=html>" target="catgraph-convert-output"><TMPL_VAR NAME=outputUrl ESCAPE=html></a></td>
 					</tr>
 				</tbody>
 			</table>

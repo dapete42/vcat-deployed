@@ -9,12 +9,12 @@ use CGI qw(-utf8);
 use Encode;
 use HTML::Template;
 
-use graphviz;
+use catgraph;
 
 my $q = CGI->new;
 
 my $template = HTML::Template->new(
-		filename => '../perl/graphviz-convert.template.html',
+		filename => '../perl/catgraph-convert.template.html',
 		strict => 0
 	);
 
@@ -43,7 +43,7 @@ if ($q->param('doConvert')) {
 			};
 	}
 	
-	my $result = graphviz::convertGraphvizParameters(@templateInputParameters);
+	my $result = catgraph::convertCatgraphParameters(@templateInputParameters);
 	my %allOutputParameters = %$result;
 	
 	my @sortList = qw(wiki category title ns rel depth limit showhidden algorithm format);
@@ -91,9 +91,9 @@ if ($q->param('doConvert')) {
 
 $template->param(
 		lang => $lang,
-		languages => graphviz::getLanguages()
+		languages => catgraph::getLanguages()
 	);
-my $translations = graphviz::getTranslations($lang);
+my $translations = catgraph::getTranslations($lang);
 while (my ($key, $value) = each $translations) {
 	$template->param(
 		't_'.$key => $value

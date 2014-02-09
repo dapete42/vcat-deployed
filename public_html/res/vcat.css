@@ -3,14 +3,7 @@ html {
 	font-size: 100%;
 	font-size: 1em;
 	line-height: 1.5em;
-	
-	column-fill: auto;
-	-moz-column-fill: auto;
-	-webkit-column-fill: auto;
-	
-	column-width: 50em;
-	-moz-column-width: 50em;
-	-webkit-column-width: 50em;
+	max-width: 50em;
 }
 
 h1, h2, h3, h4, h5, h6 {
