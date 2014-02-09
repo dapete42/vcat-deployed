@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="<TMPL_VAR NAME=lang ESCAPE=html>">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>	<TMPL_VAR NAME=t_title ESCAPE=html></title>
+		<link rel="stylesheet" type="text/css" href="res/vcat.css" />
+	</head>
+	<body>
+		
+		<header>
+			<h1><TMPL_VAR NAME=t_title ESCAPE=html></h1>
+		</header>
+		
+			<ul class="oneline">
+<TMPL_LOOP NAME=languages>
+	<TMPL_IF NAME=lang>
+				<li><a href="graphviz-convert?lang=<TMPL_VAR NAME=lang ESCAPE=html>"><TMPL_VAR NAME=name ESCAPE=html></a></li>
+	<TMPL_ELSE>
+				<li><a href="graphviz-convert"><TMPL_VAR NAME=name ESCAPE=html></a></li>
+	</TMPL_IF>
+</TMPL_LOOP>
+			</ul>
+		
+		<form id="convert" method="POST">
+			<h2><TMPL_VAR NAME=t_heading_convert ESCAPE=html></h2>
+			<div class="formline">
+				<label for="inputUrl"><TMPL_VAR NAME=t_label_url ESCAPE=html></label>
+			</div>
+			<div class="formline">
+				<input type="url" name="inputUrl" value="<TMPL_VAR NAME=inputUrl ESCAPE=html>" id="inputUrl" class="formfullwidth" />
+			</div>
+			<p>
+				<TMPL_VAR NAME=t_warning_url ESCAPE=html>
+			</p>
+			<div class="formline">
+				<input type="hidden" name="lang" value="<TMPL_VAR NAME=lang ESCAPE=html>" />
+				<input type="submit" name="doConvert" value="<TMPL_VAR NAME=t_button_convert ESCAPE=html>" />
+			</div>
+		</form>
+		
+<TMPL_IF name=hasResult>
+		<div id="result">
+			<h2><TMPL_VAR NAME=t_heading_result ESCAPE=html></h2>
+			<table class="result">
+				<tbody>
+					<tr>
+						<th scope=row><TMPL_VAR NAME=t_th_input_url ESCAPE=html></th>
+						<td><TMPL_VAR NAME=inputUrl ESCAPE=html></td>
+					</tr>
+					<tr>
+						<th scope=row><TMPL_VAR NAME=t_th_input_parameters ESCAPE=html></th>
+						<td>
+							<ul class="oneline">
+	<TMPL_LOOP NAME=inputParameters>
+		<TMPL_IF NAME=hasValue>
+								<li><TMPL_VAR NAME=key ESCAPE=html>=<TMPL_VAR NAME=value ESCAPE=html></li>
+		<TMPL_ELSE>
+								<li><TMPL_VAR NAME=key ESCAPE=html></li>
+		</TMPL_IF>
+	</TMPL_LOOP>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th scope=row><TMPL_VAR NAME=t_th_output_parameters ESCAPE=html></th>
+						<td>
+							<ul class="oneline">
+	<TMPL_LOOP NAME=outputParameters>
+		<TMPL_IF NAME=hasValue>
+								<li><TMPL_VAR NAME=key ESCAPE=html>=<TMPL_VAR NAME=value ESCAPE=html></li>
+		<TMPL_ELSE>
+								<li><TMPL_VAR NAME=key ESCAPE=html></li>
+		</TMPL_IF>
+	</TMPL_LOOP>
+							</ul>
+						</td>
+					</tr>
+					<tr class="highlight">
+						<th scope=row><TMPL_VAR NAME=t_th_output_url ESCAPE=html></th>
+						<td><a href="<TMPL_VAR NAME=outputUrl ESCAPE=html>" target="graphviz-convert-output"><TMPL_VAR NAME=outputUrl ESCAPE=html></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</TMPL_IF>
+		
+		<footer>
+		</footer>
+		
+	</body>
+</html>

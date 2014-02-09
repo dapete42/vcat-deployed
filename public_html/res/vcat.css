@@ -1,0 +1,83 @@
+html {
+	font-family: sans-serif;
+	font-size: 100%;
+	font-size: 1em;
+	line-height: 1.5em;
+	
+	column-fill: auto;
+	-moz-column-fill: auto;
+	-webkit-column-fill: auto;
+	
+	column-width: 50em;
+	-moz-column-width: 50em;
+	-webkit-column-width: 50em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+}
+
+h1 {
+	border-bottom: 1px solid rgb(170, 170, 170);
+	font-size: 1.6em;
+	font-weight: normal;
+	line-height: 1.2em;
+	margin-bottom: 0.6em;
+	padding-bottom: 0px;
+}
+
+h2 {
+	border-bottom: 1px solid rgb(170, 170, 170);
+	font-size: 1.4em;
+	font-weight: normal;
+	margin-bottom: 0.6em;
+	margin-top: 1.2em;
+}
+
+h3 {
+	font-size: 1.2em;
+	margin-bottom: 0.3em;
+	margin-top: 0.6em;
+}
+
+.formfullwidth {
+	display: block;
+	width: 100%;
+}
+
+.formline {
+	margin: 0.5em 0;
+}
+
+table.result th {
+	text-align: left;
+}
+
+table.result tr.error th,
+table.result tr.error td {
+	color: #7f0000;
+	font-weight: bold;
+}
+
+table.result tr.warning th,
+table.result tr.warning td {
+	color: #7f7f00;
+	font-weight: bold;
+}
+
+table.result tr.highlight td {
+	border: 1px solid black;
+}
+
+ul.oneline {
+	list-style-type: none;
+	margin: 0.5em 0;
+	padding: 0;
+}
+
+ul.oneline li {
+	display: inline;
+	list-style-type: none;
+	margin: 0 1em 0 0;
+	padding: 0;
+}
