@@ -141,6 +141,7 @@ sub getTranslations {
 	if ($lang eq 'de') {
 		return {
 			title => 'Catgraph-zu-vCat-Parameterkonvertierung',
+			menu_languages => 'Sprachen',
 			heading_convert => 'URL konvertieren',
 			label_url => 'Ursprüngliche Catgraph-URL',
 			warning_url => 'Achtung: Dieses Tool prüft nicht, ob die Parameter sinnvoll sind. Es wird sie so gut wie möglich konvertieren, aber wenn die ursprüngliche URL nicht funktionierte oder nicht korrent war, könnte die konvertierte URL genauso nicht funktionieren oder sich anders verhalten.',
@@ -154,6 +155,7 @@ sub getTranslations {
 	} else {
 		return {
 			title => 'Catgraph to vCat parameter converter',
+			menu_languages => 'Languages',
 			heading_convert => 'Convert a URL',
 			label_url => 'Original Catgraph URL',
 			warning_url => 'Warning: This tool does not check if the parameters make any sense. It will try its best to convert them, but if the original URL did not work correctly or was inconsistent, the converted URL may also not work correctly or work differently from before.',
