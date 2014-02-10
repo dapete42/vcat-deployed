@@ -146,7 +146,7 @@ sub getTranslations {
 			label_url => 'Ursprüngliche Catgraph-URL',
 			warning_url => 'Achtung: Dieses Tool prüft nicht, ob die Parameter sinnvoll sind. Es wird sie so gut wie möglich konvertieren, aber wenn die ursprüngliche URL nicht funktionierte oder nicht korrent war, könnte die konvertierte URL genauso nicht funktionieren oder sich anders verhalten.',
 			button_convert => 'Konvertieren',
-			heading_result => 'Ergebinis der URL-Konvertierung',
+			heading_result => 'Ergebnis der URL-Konvertierung',
 			th_input_url => 'Eingabe-URL',
 			th_input_parameters => 'Eingabeparameter',
 			th_output_parameters => 'Ausgabeparameter',
