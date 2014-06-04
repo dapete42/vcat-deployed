@@ -9,7 +9,7 @@ use CGI qw(-utf8);
 use Encode;
 use URI::Encode qw(uri_encode);
 
-use convert;
+use catgraph;
 
 my $q = CGI->new;
 
@@ -26,7 +26,7 @@ for my $name (@names) {
 	}
 }
 
-my $result = convert::convertGraphvizParameters(@parameters);
+my $result = catgraph::convertCatgraphParameters(@parameters);
 my %allOutputParameters = %$result;
 
 my @sortList = qw(wiki category title ns rel depth limit showhidden algorithm format);
@@ -47,14 +47,6 @@ while (my ($key, $valueArrayRef) = each %allOutputParameters) {
 	}
 }
 
-my $outputUrl = 'http://tools.wmflabs.org/vcat/render?' . $outputParams;
-# if ($inputUrl =~ /^https$/) {
-# 	$outputUrl = 'https' . $outputUrl;
-# } else {
-# 	$outputUrl = 'http' . $outputUrl;
-# }
-
-# print $q->header('Content-type' => 'text/html');
-# print "$outputUrl\n";
+my $outputUrl = '//tools.wmflabs.org/vcat/render?' . $outputParams;
 
 print $q->redirect($outputUrl);
