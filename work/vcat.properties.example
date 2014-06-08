@@ -1,3 +1,6 @@
+# URL of the 'render' script
+render.url=http://tools.wmflabs.org/vcat/render
+
 # Cache directory for Graphviz and image files
 cache.dir=/data/project/vcat/work/cache
 
