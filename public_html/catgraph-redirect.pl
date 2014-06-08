@@ -29,7 +29,7 @@ for my $name (@names) {
 my $result = catgraph::convertCatgraphParameters(@parameters);
 my %allOutputParameters = %$result;
 
-my @sortList = qw(wiki category title ns rel depth limit showhidden algorithm format);
+my @sortList = qw(wiki category title ns rel depth limit showhidden algorithm format links);
 
 my $outputParams = '';
 

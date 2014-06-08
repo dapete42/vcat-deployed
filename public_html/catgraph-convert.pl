@@ -46,7 +46,7 @@ if ($q->param('doConvert')) {
 	my $result = catgraph::convertCatgraphParameters(@templateInputParameters);
 	my %allOutputParameters = %$result;
 	
-	my @sortList = qw(wiki category title ns rel depth limit showhidden algorithm format);
+	my @sortList = qw(wiki category title ns rel depth limit showhidden algorithm format links);
 	
 	my $outputUrl = '//tools.wmflabs.org/vcat/render?';
 	if ($inputUrl =~ /^https:/) {

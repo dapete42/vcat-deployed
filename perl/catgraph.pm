@@ -82,7 +82,20 @@ sub convertCatgraphParameters {
 		}
 		delete $outputParameters{'fdp'};
 	}
-
+	
+	# If links=wiki, leave it like this; if links is any other true value, use links=graph
+	if (exists $outputParameters{'links'}) {
+		my $links = $outputParameters{'links'};
+		print STDERR "$links\n";
+		if ($links eq 'wiki') {
+			$outputParameters{'links'} = 'wiki';
+		} elsif (isPhpTrue($links)) {
+			$outputParameters{'links'} = 'graph';
+		} else {
+			delete $outputParameters{'links'}
+		}
+	}
+	
 	# format=png is redundant
 	if (exists $outputParameters{'format'} and
 		$outputParameters{'format'} eq 'png'
