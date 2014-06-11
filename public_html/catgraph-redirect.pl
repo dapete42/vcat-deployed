@@ -47,6 +47,6 @@ while (my ($key, $valueArrayRef) = each %allOutputParameters) {
 	}
 }
 
-my $outputUrl = '//tools.wmflabs.org/vcat/render?' . $outputParams;
+my $outputUrl = '/vcat/render?' . $outputParams;
 
 print $q->redirect($outputUrl);
