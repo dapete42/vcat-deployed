@@ -104,18 +104,14 @@ sub convertCatgraphParameters {
 		delete $outputParameters{'format'};
 	}
 
-	# depth=0 and limit=0 must be removed
-	if (
-		exists $outputParameters{'depth'} and
-		$outputParameters{'depth'} == 0
-	) {
-		delete $outputParameters{'depth'};
-	}
-	if (
-		exists $outputParameters{'limit'} and
-		$outputParameters{'limit'} == 0
-	) {
-		delete $outputParameters{'limit'};
+	# depth=0, limit=0 and sub=0 must be removed
+	for my $key ('depth', 'limit', 'sub') {	
+		if (
+			exists $outputParameters{$key} and
+			$outputParameters{$key} == 0
+		) {
+			delete $outputParameters{$key};
+		}
 	}
 	
 	# showhidden is disabled if ignorehidden was explicitly set to false
