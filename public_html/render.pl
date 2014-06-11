@@ -60,7 +60,15 @@ my $jsonRequest = {
 };
 
 our $json_encoded = to_json($jsonRequest, {ascii=>1});
-my $listeners = $r->publish($redis_channel_request, $json_encoded);
+
+# Try to send request multiple times
+my $retry = 10;
+my $listeners = 0;
+while ($listeners == 0 and $retry > 0) {
+	$listeners = $r->publish($redis_channel_request, $json_encoded);
+	sleep 1 if $listeners == 0;
+	$retry--;
+}
 
 if ($listeners == 0) {
 	errorWithLog("Control deamon not listening for requests on Redis");
