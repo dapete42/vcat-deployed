@@ -97,10 +97,25 @@ sub convertCatgraphParameters {
 	}
 	
 	# format=png is redundant
-	if (exists $outputParameters{'format'} and
+	if (
+		exists $outputParameters{'format'} and
 		$outputParameters{'format'} eq 'png'
 	) {
 		delete $outputParameters{'format'};
+	}
+
+	# depth=0 and limit=0 must be removed
+	if (
+		exists $outputParameters{'depth'} and
+		$outputParameters{'depth'} == 0
+	) {
+		delete $outputParameters{'depth'};
+	}
+	if (
+		exists $outputParameters{'limit'} and
+		$outputParameters{'limit'} == 0
+	) {
+		delete $outputParameters{'limit'};
 	}
 	
 	# showhidden is disabled if ignorehidden was explicitly set to false
