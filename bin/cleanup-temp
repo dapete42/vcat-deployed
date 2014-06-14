@@ -1,0 +1,3 @@
+#!/bin/sh
+
+find $HOME/work/temp/ ! -name '.gitignore' -type f -mmin 60
