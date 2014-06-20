@@ -14,7 +14,7 @@ use catgraph;
 my $q = CGI->new;
 
 my $template = HTML::Template->new(
-		filename => '../perl/catgraph-convert.template.html',
+		filename => '../perl/catgraphConvert.template.html',
 		strict => 0
 	);
 
