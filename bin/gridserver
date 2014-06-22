@@ -70,12 +70,12 @@ while (!$abort) {
 		
 		if ($exists) {
 			$foundAKey = 1;
-			print "Job with id $id still exists, running it\n";
+			print "$$\tJob with id $id still exists, running it\n";
 			my $json = decode_json($jsonString);
 			system @$json;
 			$r2->publish($responseChannel, $id);
 		} else {
-			print "Job with id $id already gone, trying next one if possible\n";
+			print "$$\tJob with id $id already gone, trying next one if possible\n";
 		}
 		
 	}
