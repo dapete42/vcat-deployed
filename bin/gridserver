@@ -56,9 +56,8 @@ $r1->subscribe(
 );
 
 while (!$abort) {
-	$r1->wait_for_messages(0.1);
 	my $foundAKey = 0;
-	while (!$foundAKey and @requestIds > 0) {
+	while (@requestIds > 0 and !$foundAKey) {
 		my $id = shift @requestIds;
 		my $key = $requestPrefix . $id;
 		
@@ -79,6 +78,7 @@ while (!$abort) {
 		}
 		
 	}
+	$r1->wait_for_messages(0.1);
 }
 
 $r2->unsubscribe($requestChannel, sub {});
