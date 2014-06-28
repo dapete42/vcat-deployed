@@ -1,0 +1,8 @@
+#!/bin/bash
+
+WEBAPPS="$HOME/public_tomcat/webapps/"
+
+webservice -tomcat stop
+rm $HOME/error.log
+rm -rf $WEBAPPS/vcat
+webservice -tomcat start
