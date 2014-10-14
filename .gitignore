@@ -1,4 +1,7 @@
 .*
 *.log
+*.log.*
+*.err
+*.out
 replica.my.cnf
 !.gitignore

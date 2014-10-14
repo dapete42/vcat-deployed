@@ -4,6 +4,6 @@ RUNNING=`qstat -j vcat-gridserver | grep job_number | awk '{print$2}' | wc -l`
 WANTED=2
 
 while [ $RUNNING \< $WANTED ]; do
-	jsub -N vcat-gridserver -mem 1g -o $HOME/gridserver.log -j y $HOME/bin/gridserver "$@"
+	jsub -N gridserver -mem 1g -o $HOME/gridserver.log -j y $HOME/bin/gridserver "$@"
 	RUNNING=$(($RUNNING + 1))
 done

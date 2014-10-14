@@ -7,3 +7,5 @@ do
 		cat /dev/null > $HOME/$log
 	fi
 done
+
+find $HOME/public_tomcat/logs/ ! -name '.gitignore' -type f -mtime +6 -delete
