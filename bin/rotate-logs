@@ -1,0 +1,9 @@
+#!/bin/sh
+
+for log in error.log gridserver.log
+do
+	if [ -e $HOME/$log ]; then
+		cp -p $HOME/$log $HOME/$log.old
+		cat /dev/null > $HOME/$log
+	fi
+done
