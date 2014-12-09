@@ -1,11 +1,15 @@
 #!/bin/sh
 
-for log in error.log gridserver.log
-do
-	if [ -e $HOME/$log ]; then
-		cp -p $HOME/$log $HOME/$log.old
-		cat /dev/null > $HOME/$log
-	fi
-done
+if [ $(find $HOME/error.log -size +100M 2>/dev/null) ]; then
+        webservice -tomcat stop >/dev/null
+        mv $HOME/error.log $HOME/error.log.0
+        webservice -tomcat start >/dev/null
+fi
+
+if [ $(find $HOME/gridserver.log -size +100M 2>/dev/null) ]; then
+	$HOME/bin/gridserverStop
+        mv $HOME/gridserver.log $HOME/gridserver.log.0
+	$HOME/bin/gridserverStart
+fi
 
 find $HOME/public_tomcat/logs/ ! -name '.gitignore' -type f -mtime +6 -delete
