@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUNNING=`qstat -j vcat-gridserver | grep job_number | awk '{print$2}' | wc -l`
+RUNNING=`qstat -j gridserver | grep job_number | awk '{print$2}' | wc -l`
 WANTED=2
 
 while [ $RUNNING \< $WANTED ]; do

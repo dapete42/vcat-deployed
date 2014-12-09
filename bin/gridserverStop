@@ -1,2 +1,2 @@
 #!/bin/sh
-qdel vcat-gridserver
+qdel gridserver
