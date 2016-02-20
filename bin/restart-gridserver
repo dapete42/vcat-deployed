@@ -1,6 +1,0 @@
-#!/bin/bash
-
-~/bin/gridserverStop
-sleep 1
-~/bin/gridserverStart 
-

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+qdel gridserver
+
+WANTED=2
+STARTED=0
+
+while [ $STARTED -lt $WANTED ]; do
+	$HOME/bin/gridserverSubmit "$@"
+	STARTED=$(($STARTED + 1))
+done
