@@ -55,7 +55,12 @@ $r1->subscribe(
 	}
 );
 
-while (!$abort) {
+my $counter = 25 + int(rand(25));
+
+print "[$$] Gridserver started\n";
+print "[$$] This instance will serve $counter requests\n";
+
+while (!$abort and $counter > 0) {
 	my $foundAKey = 0;
 	while (@requestIds > 0 and !$foundAKey) {
 		my $id = shift @requestIds;
@@ -73,12 +78,19 @@ while (!$abort) {
 			my $json = decode_json($jsonString);
 			system @$json;
 			$r2->publish($responseChannel, $id);
+			$counter--;
 		} else {
 #			print "$$\tJob with id $id already gone, trying next one if possible\n";
 		}
 		
 	}
 	$r1->wait_for_messages(0.1);
+}
+
+if ($abort) {
+	print "[$$] Gridserver aborted\n";
+} else {
+	print "[$$] Gridserver stopped\n";
 }
 
 $r2->unsubscribe($requestChannel, sub {});
