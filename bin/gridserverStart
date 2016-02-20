@@ -5,6 +5,6 @@ RUNNING=`qstat -s pr | grep gridserver | grep -v ' dr ' | wc -l`
 WANTED=2
 
 while [ $RUNNING -lt $WANTED ]; do
-	jsub -N gridserver -mem 1g -o $HOME/gridserver.log -j y $HOME/bin/gridserver "$@"
+	$HOME/bin/gridserverSubmit "$@"
 	RUNNING=$(($RUNNING + 1))
 done
