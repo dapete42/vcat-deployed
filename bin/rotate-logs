@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if [ $(find $HOME/error.log -size +100M 2>/dev/null) ]; then
-        webservice -tomcat stop >/dev/null
+        webservice tomcat stop >/dev/null
         mv $HOME/error.log $HOME/error.log.0
-        webservice -tomcat start >/dev/null
+        webservice tomcat start >/dev/null
 fi
 
 if [ $(find $HOME/gridserver.log -size +100M 2>/dev/null) ]; then
