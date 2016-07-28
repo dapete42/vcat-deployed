@@ -6,5 +6,11 @@ JOBID=`job tomcat-vcat`
 if [ -z "$JOBID" ]; then
         # If job is not running, start it
 	webservice tomcat start >/dev/null 2>&1
+else
+	FOUND=$( curl -s https://tools.wmflabs.org/vcat/status | grep '<title>vCat</title>' | wc -l )
+	if [ $FOUND = 0 ]; then
+		# If status page does not return the right contents, restart it
+		webservice tomcat restart >/dev/null 2>&1
+	fi 
 fi
 
