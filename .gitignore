@@ -3,6 +3,6 @@
 *.log.*
 *.err
 *.out
+logs
 replica.my.cnf
 service.manifest
-!.gitignore
