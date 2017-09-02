@@ -1,15 +1,15 @@
 vcat-deployed
 =============
 
-Under construction. This contains the vCat installation as deployed on Tool
-Labs.
+Under construction. This contains the vCat installation as deployed on
+Wikimedia Toolforge.
 
-WAR for vcat-toollabs-webapp
+WAR for vcat-toolforge-webapp
 ----------------------------
 
 For licensing reasons, the repository does not contain the required file
 `public_tomcat/webapp/vcat.war`, which can be built using the
-*vcat-toollabs-webapp* Maven artifact. You need the file created under the
+*vcat-toolforge-webapp* Maven artifact. You need the file created under the
 name `target/webapp.war`. This is available in a GitHub repository at
 https://github.com/dapete42/vcat
 
