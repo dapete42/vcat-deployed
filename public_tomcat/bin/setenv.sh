@@ -2,5 +2,5 @@
 #
 
 CATALINA_HOME=/usr/share/tomcat7
-JAVA_OPTS="-Djava.awt.headless=true -Xmx512M"
+JAVA_OPTS="-Djavamelody.storage-directory=$HOME/javamelody -Djava.awt.headless=true -Xmx512M"
 
