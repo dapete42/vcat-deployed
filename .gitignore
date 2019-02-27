@@ -3,6 +3,7 @@
 /*.log.*
 /*.err
 /*.out
+/javamelody
 /logs
 /replica.my.cnf
 /service.manifest
