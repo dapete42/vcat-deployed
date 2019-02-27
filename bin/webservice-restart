@@ -1,0 +1,2 @@
+#!/bin/bash
+webservice restart || ( webservice stop ; $HOME/bin/webservice-start )

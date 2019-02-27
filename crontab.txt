@@ -1,0 +1,14 @@
+## m h  dom mon dow   command
+
+# jlocal because rotating may restart webservice or SGE tasks
+#24 * * * * jlocal $HOME/bin/rotate-logs >$HOME/logs/rotate-logs
+
+# jlocal is OK because this script just checks if Tomcat is running, and starts it if necessary
+*/5 * * * * jlocal $HOME/bin/check-tomcat >$HOME/logs/check-tomcat 2>&1
+
+# jlocal is OK because scripts just checks if jobs are running
+0 0 * * * jlocal $HOME/bin/gridserverRestart >$HOME/logs/gridserverRestart 2>&1
+*/5 * * * * jlocal $HOME/bin/gridserverStart >$HOME/logs/gridserverStart 2>&1
+
+# Deletes old temp files once in a while
+*/10 * * * * jsub -quiet $HOME/bin/cleanup

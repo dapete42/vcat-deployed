@@ -1,2 +1,2 @@
 #!/bin/bash
-jsub -N gridserver -mem 1g -o $HOME/gridserver.log -j y $HOME/bin/gridserver "$@"
+jsub -N gridserver -mem 1g -o $HOME/logs/gridserver.log -j y $HOME/bin/gridserver "$@"
