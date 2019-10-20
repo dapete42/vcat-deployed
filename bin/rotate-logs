@@ -6,4 +6,5 @@ if [ $(find $HOME/logs/gridserver.log -size +100M 2>/dev/null) ]; then
 	$HOME/bin/gridserverStart
 fi
 
-find $HOME/logs/ $HOME/tomcat/logs/ ! -name '.gitignore' ! -name 'gridserver.log' -type f -mtime +6 -delete
+find $HOME/javamelody/ $HOME/logs/ $HOME/tomcat/logs/ ! -name '.gitignore' ! -name 'gridserver.log' -type f -mtime +6 -delete
+find $HOME/javamelody/ -type d -empty -delete

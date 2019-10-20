@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Digest::MD5 qw(md5_hex);
+use Digest::SHA qw(sha256_hex);
 use Encode;
 use JSON;
 use Redis;
@@ -34,7 +34,7 @@ while (my $line = <MYCNF>) {
 }
 close MYCNF;
 
-my $redisSecret = md5_hex("$user:$password");
+my $redisSecret = sha256_hex("$user:$password");
 
 my $requestChannel = $redisSecret . "-request";
 my $requestPrefix = $redisSecret . "-request-";
@@ -55,7 +55,7 @@ $r1->subscribe(
 	}
 );
 
-my $counter = 25 + int(rand(25));
+my $counter = 1000 + int(rand(1000));
 
 print "[$$] Gridserver started\n";
 print "[$$] This instance will serve $counter requests\n";

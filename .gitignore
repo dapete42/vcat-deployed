@@ -8,6 +8,7 @@
 /replica.my.cnf
 /service.manifest
 /stage/vcat.war
-/tomcat/*
+/tomcat
+/tomcat-*
 /work/cache/*
 /work/temp/*
