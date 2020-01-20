@@ -3,11 +3,12 @@
 /*.log.*
 /*.err
 /*.out
+/core
 /javamelody
 /logs
 /replica.my.cnf
 /service.manifest
-/stage/vcat.war
+/stage/vcat*.war
 /tomcat
 /tomcat-*
 /work/cache/*
