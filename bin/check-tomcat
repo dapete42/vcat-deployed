@@ -4,5 +4,5 @@ FOUND=$( curl -s 'https://tools.wmflabs.org/vcat/render?wiki=dewiki&category=doe
 
 if [ $FOUND = 0 ]; then
 	# If status page does not return the right contents, restart it
-	$HOME/bin/webservices-restart
+	$HOME/bin/webservice-restart
 fi 

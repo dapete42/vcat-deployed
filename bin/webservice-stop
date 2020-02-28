@@ -1,2 +1,2 @@
 #!/bin/bash
-webservice --backend=kubernetes jdk8 stop
+webservice stop
