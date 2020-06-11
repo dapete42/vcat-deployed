@@ -1,2 +1,2 @@
 #!/bin/bash
-webservice --backend=kubernetes jdk11 start /data/project/vcat/tomcat/bin/catalina.sh run
+webservice start

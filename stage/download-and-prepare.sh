@@ -5,7 +5,7 @@ setenv -e
 cd "$( dirname $0)"
 
 tomcat_major=8
-tomcat_version=8.5.50
+tomcat_version=8.5.53
 
 tomcat_zip=apache-tomcat-$tomcat_version.zip
 
@@ -18,10 +18,11 @@ workdir=work/apache-tomcat-$tomcat_version
 
 cp -p setenv.sh $workdir/bin/
 cp -p server.xml $workdir/conf/
+cp -p tomcat-users.xml $workdir/conf/
 rm -rf $workdir/webapps/*
 mkdir -p $workdir/webapps/vcat
 #unzip vcat.war -d $workdir/webapps/vcat
-cp -p vcat.war $workdir/webapps/
+cp -p vcat.war $workdir/webapps/ROOT.war
 chmod +x $workdir/bin/*.sh
 
 rsync -av --delete $workdir/ $HOME/tomcat-$tomcat_version/

@@ -1,0 +1,6 @@
+backend: kubernetes
+type: jdk11
+extra_args:
+   - /data/project/vcat/tomcat/bin/catalina.sh
+   - run
+canonical: True

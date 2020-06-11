@@ -8,10 +8,15 @@ WAR for vcat-toolforge-webapp
 ----------------------------
 
 For licensing reasons, the repository does not contain the required file
-`public_tomcat/webapp/vcat.war`, which can be built using the
-*vcat-toolforge-webapp* Maven artifact. You need the file created under the
-name `target/webapp.war`. This is available in a GitHub repository at
-https://github.com/dapete42/vcat
+`stage/vcat.war`, which can be built using the *vcat-toolforge-webapp*
+Maven artifact. You need the file created under the `target/webapp.war`.
+This is available in a GitHub repository at https://github.com/dapete42/vcat
+
+Installation
+------------
+
+The script `stage/download-and-prepare.sh` will set up a Tomcat and copy
+`vcat.war` to the appropriate place at `tomcat/webapps/ROOT.war`.
 
 Required packages
 -----------------
