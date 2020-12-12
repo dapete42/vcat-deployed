@@ -5,7 +5,7 @@ setenv -e
 cd "$( dirname $0)"
 
 tomcat_major=8
-tomcat_version=8.5.53
+tomcat_version=8.5.61
 
 tomcat_zip=apache-tomcat-$tomcat_version.zip
 
