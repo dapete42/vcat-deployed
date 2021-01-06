@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FOUND=$( curl -s 'https://tools.wmflabs.org/vcat/render?wiki=dewiki&category=doesnotexist&format=gv' | grep Kategorie:doesnotexist -c )
+FOUND=$( curl -s 'https://vcat.toolforge.org/render?wiki=dewiki&category=doesnotexist&format=gv' | grep Kategorie:doesnotexist -c )
 
 if [ $FOUND = 0 ]; then
 	# If status page does not return the right contents, restart it
