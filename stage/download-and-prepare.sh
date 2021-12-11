@@ -4,12 +4,12 @@ setenv -e
 
 cd "$( dirname $0)"
 
-tomcat_major=8
-tomcat_version=8.5.61
+tomcat_major=9
+tomcat_version=9.0.56
 
 tomcat_zip=apache-tomcat-$tomcat_version.zip
 
-wget "https://www-us.apache.org/dist/tomcat/tomcat-$tomcat_major/v$tomcat_version/bin/$tomcat_zip" -c
+wget "https://dlcdn.apache.org/tomcat/tomcat-$tomcat_major/v$tomcat_version/bin/$tomcat_zip" -c
 
 rm -rf work
 unzip apache-tomcat-$tomcat_version.zip -d work -x "apache-tomcat-$tomcat_version/webapps/*"
@@ -19,9 +19,7 @@ workdir=work/apache-tomcat-$tomcat_version
 cp -p setenv.sh $workdir/bin/
 cp -p server.xml $workdir/conf/
 cp -p tomcat-users.xml $workdir/conf/
-rm -rf $workdir/webapps/*
-mkdir -p $workdir/webapps/vcat
-#unzip vcat.war -d $workdir/webapps/vcat
+mkdir -p $workdir/webapps
 cp -p vcat.war $workdir/webapps/ROOT.war
 chmod +x $workdir/bin/*.sh
 
@@ -35,4 +33,3 @@ do
 	fi
 done
 rm -rf work
-
