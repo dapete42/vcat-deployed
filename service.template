@@ -1,6 +1,8 @@
 backend: kubernetes
+version: 4
 type: jdk11
 extra_args:
-   - /data/project/vcat/tomcat/bin/catalina.sh
-   - run
-canonical: True
+- /data/project/vcat/tomcat/bin/catalina.sh
+- run
+canonical: true
+release: buster

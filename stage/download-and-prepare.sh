@@ -5,7 +5,7 @@ setenv -e
 cd "$( dirname $0)"
 
 tomcat_major=9
-tomcat_version=9.0.56
+tomcat_version=9.0.60
 
 tomcat_zip=apache-tomcat-$tomcat_version.zip
 
@@ -18,7 +18,6 @@ workdir=work/apache-tomcat-$tomcat_version
 
 cp -p setenv.sh $workdir/bin/
 cp -p server.xml $workdir/conf/
-cp -p tomcat-users.xml $workdir/conf/
 mkdir -p $workdir/webapps
 cp -p vcat.war $workdir/webapps/ROOT.war
 chmod +x $workdir/bin/*.sh
