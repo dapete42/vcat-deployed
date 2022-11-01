@@ -11,4 +11,4 @@
 */5 * * * * jlocal $HOME/bin/gridserverStart >$HOME/logs/gridserverStart 2>&1
 
 # Deletes old temp files once in a while
-*/30 * * * * jsub -quiet $HOME/bin/cleanup
+#*/30 * * * * jsub -quiet $HOME/bin/cleanup

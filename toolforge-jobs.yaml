@@ -1,0 +1,23 @@
+# https://wikitech.wikimedia.org/wiki/Help:Toolforge/Jobs_framework
+---
+# Delete old temp files once in a while
+- name: cleanup
+  image: tf-bullseye-std
+  command: bin/cleanup
+  no-filelog: true
+  schedule: "17,47 * * * *"
+  emails: onfailure
+# Run two instances of gridserver
+#- name: gridserver1
+#  image: tf-perl532
+#  command: bin/gridserver
+#  continuous: true
+#  mem: 1Gi
+#  emails: all
+#- name: gridserver2
+#
+#  image: tf-perl532
+#  command: bin/gridserver 
+#  continuous: true
+#  mem: 1Gi
+#  emails: all
