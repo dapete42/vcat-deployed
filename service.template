@@ -2,7 +2,6 @@ backend: kubernetes
 version: 4
 type: jdk17
 extra_args:
-- /data/project/vcat/tomcat/bin/catalina.sh
-- run
+- /data/project/vcat/vcat-toolforge-runner.sh
 canonical: true
 release: buster
