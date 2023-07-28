@@ -1,0 +1,2 @@
+#!/bin/bash
+toolforge build start https://github.com/dapete42/vcat

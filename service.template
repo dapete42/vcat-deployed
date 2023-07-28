@@ -1,7 +1,3 @@
 backend: kubernetes
-version: 4
-type: jdk17
-extra_args:
-- /data/project/vcat/vcat-toolforge-runner.sh
-canonical: true
-release: buster
+type: buildservice
+#mem: 1G
