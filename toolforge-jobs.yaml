@@ -7,17 +7,18 @@
   no-filelog: true
   schedule: "17,47 * * * *"
   emails: onfailure
-# Run two instances of gridserver
-#- name: gridserver1
-#  image: tf-perl532
-#  command: bin/gridserver
-#  continuous: true
-#  mem: 1Gi
-#  emails: all
-#- name: gridserver2
-#
-#  image: tf-perl532
-#  command: bin/gridserver 
-#  continuous: true
-#  mem: 1Gi
-#  emails: all
+# 2 instances of gridserver
+- name: gridserver1
+  image: tool-vcat/tool-vcat:latest
+  no-filelog: true
+  command: gridserver
+  continuous: true
+  mem: 1Gi
+  emails: all
+- name: gridserver2
+  image: tool-vcat/tool-vcat:latest
+  no-filelog: true
+  command: gridserver 
+  continuous: true
+  mem: 1Gi
+  emails: all

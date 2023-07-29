@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for job in gridserver1 gridserver2
+do
+	toolforge jobs restart "$job"
+done

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for job in gridserver1 gridserver2
+do
+	toolforge jobs load "$HOME/toolforge-jobs.yaml" --job "$job"
+done

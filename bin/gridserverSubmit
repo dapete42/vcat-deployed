@@ -1,2 +1,0 @@
-#!/bin/bash
-jsub -N gridserver -release buster -mem 1g -o $HOME/logs/gridserver.log -j y $HOME/bin/gridserver
