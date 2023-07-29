@@ -3,8 +3,8 @@
 # jlocal because rotating may restart webservice or SGE tasks
 24 * * * * jlocal $HOME/bin/rotate-logs >$HOME/logs/rotate-logs
 
-# jlocal is OK because this script just checks if Tomcat is running, and starts it if necessary
-15,45 * * * * jlocal $HOME/bin/check-tomcat >$HOME/logs/check-tomcat 2>&1
+# jlocal is OK because this script just checks if the webservice is reachable, and restarts it if necessary
+15,45 * * * * jlocal $HOME/bin/check-webservice >$HOME/logs/check-webservice 2>&1
 
 # jlocal is OK because scripts just checks if jobs are running
 0 0 * * * jlocal $HOME/bin/gridserverRestart >$HOME/logs/gridserverRestart 2>&1
