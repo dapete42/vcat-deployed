@@ -14,11 +14,11 @@
   command: gridserver
   continuous: true
   mem: 1Gi
-  emails: all
+  emails: onfailure
 - name: gridserver2
   image: tool-vcat/tool-vcat:latest
   no-filelog: true
   command: gridserver 
   continuous: true
   mem: 1Gi
-  emails: all
+  emails: onfailure
