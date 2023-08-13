@@ -7,6 +7,6 @@
 /logs
 /replica.my.cnf
 /service.manifest
-/vcat-toolforge-runner.jar
 /work/cache/*
 /work/temp/*
+!/.description
