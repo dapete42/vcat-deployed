@@ -1,14 +1,4 @@
 ## m h  dom mon dow   command
 
-# jlocal because rotating may restart webservice or SGE tasks
-24 * * * * jlocal $HOME/bin/rotate-logs >$HOME/logs/rotate-logs
-
 # jlocal is OK because this script just checks if the webservice is reachable, and restarts it if necessary
 15,45 * * * * jlocal $HOME/bin/check-webservice >$HOME/logs/check-webservice 2>&1
-
-# jlocal is OK because scripts just checks if jobs are running
-0 0 * * * jlocal $HOME/bin/gridserver-restart >$HOME/logs/gridserver-restart 2>&1
-*/5 * * * * jlocal $HOME/bin/gridserver-start >$HOME/logs/gridserver-start 2>&1
-
-# Deletes old temp files once in a while
-#*/30 * * * * jsub -quiet $HOME/bin/cleanup

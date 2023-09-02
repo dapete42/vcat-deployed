@@ -1,3 +1,4 @@
 backend: kubernetes
 type: buildservice
-#mem: 1G
+cpu: 1
+mem: 2G

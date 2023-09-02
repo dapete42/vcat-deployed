@@ -1,9 +1,0 @@
-#!/bin/sh
-
-if [ $(find $HOME/logs/gridserver.log -size +100M 2>/dev/null) ]; then
-	$HOME/bin/gridserverStop
-        mv $HOME/logs/gridserver.log $HOME/logs/gridserver.log.0
-	$HOME/bin/gridserverStart
-fi
-
-find $HOME/logs/ ! -name '.gitignore' ! -name 'gridserver.log' -type f -mtime +6 -delete
