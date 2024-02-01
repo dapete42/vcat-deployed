@@ -4,9 +4,8 @@
 /*.err
 /*.out
 /core
+/javamelody
 /logs
 /replica.my.cnf
 /service.manifest
-/work/cache/*
-/work/temp/*
 !/.description
