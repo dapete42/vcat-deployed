@@ -2,3 +2,4 @@ backend: kubernetes
 type: buildservice
 cpu: 1
 mem: 2G
+mount: all
